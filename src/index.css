@@ -86,10 +86,67 @@ body {
   box-shadow: 0px 3px 30px #8E72D7;
 }
 
-.navbarText{
-  color:white;
+.navbarText {
+  color: white;
   font-weight: bold;
   font-size: 30px;
   text-align: center;
   text-shadow: 2px 4px 15px #8E72D7;
 }
+
+
+/*---------- Button que titila ------------ */
+.whoButton {
+  height: 50px;
+  width: 100px;
+  border: none;
+  border-radius: 50px;
+  transition: 0.3s;
+  background-color: rgba(156, 161, 160, 0.3);
+  animation: glow 2s infinite;
+  transition: 0.5s;
+  color:white;
+  margin:10px
+}
+
+.whoSpan {
+  display: block;
+  width: 100%;
+  height: 100%;
+  font-family: Arial, Helvetica, sans-serif;
+  font-weight: 700;
+  padding-right: 2.5%;
+  margin-right: 0px;
+  font-size: 17px;
+  transition: 0.3s;
+  opacity: 1; /* Cambiado de 0 a 1 */
+}
+
+.whoButton:hover .whoSpan {
+  transition: 0.3s;
+  opacity: 1;
+  font-weight: 700;
+  color: white;
+}
+
+.whoButton:hover {
+  transform: translatey(10px);
+  border-radius: 50px;
+  background-color: #c3bacc;
+  transition: 0.5s;
+}
+
+@keyframes glow {
+  0% {
+    box-shadow: 5px 5px 20px #8E72D7, -5px -5px 20px #8E72D7;
+  }
+
+  50% {
+    box-shadow: 5px 5px 20px #B8BBCA, -5px -5px 20px #B8BBCA
+  }
+
+  100% {
+    box-shadow: 5px 5px 20px #8E72D7, -5px -5px 20px #8E72D7
+  }
+}
+/* -------------------------------------------------- */
