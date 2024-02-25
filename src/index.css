@@ -2,12 +2,29 @@ body {
   margin: 0;
   min-width: 320px;
   min-height: 100vh;
-  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+  /* font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif; */
+  font-family: 'Raleway-Thin', sans-serif;
+  font-weight: 900;
   background-color: #E9EBEA;
   background-image: url('./assets/grietaBody.jpg');
   background-repeat: no-repeat;
   background-size: cover;
-  /* Puedes ajustar esto según tus necesidades */
+}
+
+@font-face {
+  font-family: 'Raleway-Thin';
+  src: local('Raleway-Thin'), url('./assets/Fonts/static/Raleway-Thin.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+  /* Puedes agregar más formatos de fuente según sea necesario */
+}
+
+@font-face {
+  font-family: 'Raleway-SemiBold';
+  src: local('Raleway-SemiBold'), url('./assets/Fonts/static/Raleway-SemiBold.ttf') format('truetype');
+  font-weight: normal;
+  font-style: bold;
+  /* Puedes agregar más formatos de fuente según sea necesario */
 }
 
 .navbar {
@@ -16,11 +33,11 @@ body {
   justify-content: space-between;
   align-items: center;
   margin: 0px;
-  height: 70px;
   max-height: auto;
   /* background-color: #B8BBCA; */
   background: linear-gradient(to bottom, #CDD2D8, #D3D8DE, #BFC3CC);
   box-shadow: 0px 3px 30px #8E72D7;
+  font-family: 'Raleway-SemiBold', sans-serif;
 }
 
 .imgNavbar1 {
@@ -32,6 +49,11 @@ body {
 .imgNavbar2 {
   height: 90px;
   width: 300px;
+
+  @media only screen and (max-width: 600px) {
+    width: 100px;
+    height: 40px;
+  }
 }
 
 .navbarText {
@@ -40,6 +62,16 @@ body {
   font-size: 30px;
   text-align: center;
   text-shadow: 2px 4px 15px #8E72D7;
+  @media only screen and (max-width: 600px) {
+    font-size: 20px;
+  }
+}
+
+.closeButton {
+  padding: 10px;
+  border-radius: 20px;
+  border: solid 0px #b8bbca9f;
+  font-family: 'Raleway-SemiBold', sans-serif;
 }
 
 /*---------- Button que titila ------------ */
@@ -53,7 +85,8 @@ body {
   background-color: rgba(156, 161, 160, 0.3);
   animation: glow 2s infinite;
   transition: 0.5s;
-  color: white;
+  color: rgb(58, 58, 58);
+  font-family: 'Raleway-SemiBold', sans-serif;
   margin: 10px
 }
 
@@ -61,14 +94,12 @@ body {
   display: block;
   width: 100%;
   height: 100%;
-  font-family: Arial, Helvetica, sans-serif;
   font-weight: 700;
   padding-right: 2.5%;
   margin-right: 0px;
   font-size: 17px;
   transition: 0.3s;
   opacity: 1;
-  /* Cambiado de 0 a 1 */
 }
 
 .whoButton:hover .whoSpan {
@@ -100,3 +131,122 @@ body {
 }
 
 /*---------------------------------------- */
+
+.social-icons {
+  display: flex;
+  align-items: center;
+}
+
+.social-icon {
+  font-size: 24px;
+  margin-left: 10px;
+  color: white;
+  cursor: pointer;
+}
+
+/*--------- Botones desplegables ---------- */
+
+.dropdown-container {
+  position: relative;
+  margin-right: 10px;
+  margin-bottom: 0;
+  width: 100%;
+  /* ojo esto */
+
+  button {
+    cursor: pointer;
+    display: block;
+    width: 100%;
+    background-color: white;
+    border: 0px;
+    padding: 10px;
+    border-radius: 10px;
+    font-family: 'Raleway-Thin', sans-serif;
+    font-weight: 900;
+    font-size: x-large;
+    color: #8E72D7;
+
+  }
+
+  .contBut {
+    cursor: pointer;
+    display: block;
+    width: 100%;
+    background-color: transparent;
+    border: 0px;
+    font-family: 'Raleway-Thin', sans-serif;
+    font-size: 20px;
+    font-weight: 700;
+    color: #d31d1d;
+    text-align: left;
+  }
+
+  .dropdown {
+    top: calc(100% + 5px);
+    left: 0;
+    z-index: 1000;
+    background: white;
+    border-radius: 10px;
+    margin-top: 10px;
+    box-shadow: 0px 4px 8px #8E72D7;
+    padding: 10px;
+    opacity: 0;
+    transform: translateY(-10px);
+    transition: opacity 0.3s ease, transform 0.3s ease;
+  }
+
+  &.open {
+    .dropdown {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+}
+
+/*---------------------------------------- */
+
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+  
+}
+
+.modal-content {
+  background: white;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0px 0px 10px 0px #8E72D7;
+  @media only screen and (max-width: 600px) {
+    margin: 20px;
+  }
+}
+
+.modal-overlay {
+  /* ... Otros estilos ... */
+  opacity: 0;
+  /* Inicialmente invisible */
+  transition: opacity 0.9s ease;
+  /* Transición suave de 0.3 segundos */
+}
+
+.modal-content {
+  /* ... Otros estilos ... */
+  opacity: 0;
+  /* Inicialmente invisible */
+  transition: opacity 0.9s ease;
+  /* Transición suave de 0.3 segundos */
+}
+
+.modal-overlay.open,
+.modal-content.open {
+  opacity: 1;
+  /* Hacer visible cuando tiene la clase 'open' */
+}

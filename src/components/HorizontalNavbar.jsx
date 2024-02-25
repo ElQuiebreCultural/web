@@ -1,76 +1,81 @@
-import React, { useState } from 'react';
-import styled from 'styled-components';
+/* eslint-disable react/prop-types */
+/* eslint-disable no-unused-vars */
+import React, { useState, useEffect } from 'react';
+import '../index.css';
+import data from '../data.json'
 
-const DropdownContainer = styled.div`
-position: relative;
-margin-right: 10px;
-margin-bottom: ${(props) => (props.isOpen ? '10px' : '0')}; /* Añadir margen inferior si está abierto */
+const Modal = ({ isOpen, closeModal, selectedItem }) => {
+  if (!isOpen) {
+    return null;
+  }
 
-button {
-  cursor: pointer;
-  display: block; /* Asegurar que el botón ocupe todo el ancho del contenedor */
-  width: 100%; /* Hacer que el botón ocupe todo el ancho del contenedor */
-}
-
-.dropdown {
-  position: absolute;
-  top: calc(100% + 5px); /* Ajustar la posición del desplegable */
-  left: 0;
-  z-index: 1000;
-  background: white;
-  box-shadow: 0px 4px 8px #8E72D7;
-  padding: 10px;
-  opacity: ${(props) => (props.isOpen ? 1 : 0)};
-  transform: translateY(${(props) => (props.isOpen ? 0 : '-10px')});
-  transition: opacity 0.3s ease, transform 0.3s ease;
-}
-`;
-
-const DropdownButton = ({ label, items, isOpen, toggleDropdown }) => {
   return (
-    <DropdownContainer isOpen={isOpen}>
-      {/* Botón que activa/desactiva el desplegable */}
-      <button onClick={toggleDropdown}>{label}</button>
+    <div className={`modal-overlay ${isOpen ? 'open' : ''}`}>
+      <div className={`modal-content ${isOpen ? 'open' : ''}`}>
+        <h2>{selectedItem.name}</h2>
+        <p>Descripción {selectedItem.description}</p>
+        <p><span style={{ fontFamily: 'Raleway-SemiBold' }}>Profesor:</span> {selectedItem.instructor}</p>
+        <p><span style={{ fontFamily: 'Raleway-SemiBold' }}>Días y horarios:</span> {selectedItem.dias + ' - ' + selectedItem.horarios}</p><br />
+        <div style={{ display: 'flex', flexDirection: 'row', justifyContent: 'space-between', height: '60px' }}>
+          <button className='whoButton'>Inscribite acá</button>
+          <button className='closeButton' onClick={closeModal}>Cerrar</button>
+        </div>
 
-      {/* Desplegable que se muestra si isOpen es true */}
+      </div>
+    </div >
+  );
+};
+
+const DropdownButton = ({ label, items, isOpen, toggleDropdown, openModal }) => {
+  return (
+    <div className={`dropdown-container ${isOpen ? 'open' : ''}`}>
+      <button onClick={() => toggleDropdown()}>{label}</button>
       <div className="dropdown">
-        {/* Mapear y renderizar los items dentro del desplegable */}
         {items.map((item, index) => (
-          <p key={index}>{item}</p>
+          <button className='contBut' key={index} onClick={() => openModal(item)}>
+            {item.name}
+          </button>
         ))}
       </div>
-    </DropdownContainer>
+    </div>
   );
 };
 
 const HorizontalNavbar = () => {
-  // Estado para rastrear qué botón está actualmente abierto
   const [openButton, setOpenButton] = useState(null);
+  const [selectedItem, setSelectedItem] = useState(null);
 
-  // Función para alternar el botón abierto
   const toggleOpenButton = (buttonLabel) => {
     setOpenButton(openButton === buttonLabel ? null : buttonLabel);
   };
 
-  // Array de objetos que representan cada botón con sus respectivos items
-  const buttons = [
-    { label: 'Botón 1', items: ['Item A', 'Item B', 'Item C'] },
-    { label: 'Botón 2', items: ['Item X', 'Item Y', 'Item Z'] },
-    // Puedes agregar más botones con sus items aquí
-  ];
+  const openModal = (item) => {
+    setSelectedItem(item);
+  };
+
+  useEffect(() => {
+    if (selectedItem !== null) {
+      const timeoutId = setTimeout(() => toggleOpenButton(null), 10);
+      return () => clearTimeout(timeoutId);
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [selectedItem]);
+
+  const Data = data.Data;
 
   return (
-    <div style={{ display: 'flex' }}>
-      {/* Mapear y renderizar cada botón con sus respectivos items */}
-      {buttons.map((button, index) => (
+    <div style={{ display: 'flex', margin: '10px' }}>
+      {Data.map((button, index) => (
         <DropdownButton
           key={index}
           label={button.label}
           items={button.items}
           isOpen={openButton === button.label}
           toggleDropdown={() => toggleOpenButton(button.label)}
+          openModal={openModal}
         />
       ))}
+      <Modal isOpen={selectedItem !== null} closeModal={() => setSelectedItem(null)} selectedItem={selectedItem} />
     </div>
   );
 };

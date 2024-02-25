@@ -1,0 +1,30 @@
+{
+    "Data": [
+      {
+        "label": "Talleres",
+        "items": [
+          { "name": "Canto", "description": "Descripción del taller de canto", "instructor": "Nombre del instructor", "dias": "Martes", "horarios": "20hs." },
+          { "name": "Folklore", "description": "Descripción del taller de folklore", "instructor": "Nombre del instructor" },
+          { "name": "Salsa y Bachata", "description": "Descripción del taller de canto", "instructor": "Nombre del instructor" },
+          { "name": "Tango", "description": "Descripción del taller de canto", "instructor": "Nombre del instructor" },
+          { "name": "Teatro - Principiantes", "description": "El taller de Teatro - Principiantes está orientado para aquellos que no tengan experiencia y quieran incursionar en este hermoso arte", "instructor": "Estefanía Camacci" },
+          { "name": "Teatro - Avanzados", "description": "Descripción del taller de canto", "instructor": "Estefanía Camacci" }
+        ]
+      },
+      {
+        "label": "Cursos",
+        "items": [
+          { "name": "Curso X", "description": "Descripción del curso X", "instructor": "Nombre del instructor" },
+          { "name": "Curso Y", "description": "Descripción del curso Y", "instructor": "Nombre del instructor" }
+        ]
+      },
+      {
+        "label": "Obras",
+        "items": [
+          { "name": "Obra A", "description": "Descripción de la obra A", "instructor": "Nombre del instructor" },
+          { "name": "Obra B", "description": "Descripción de la obra B", "instructor": "Nombre del instructor" }
+        ]
+      }
+    ]
+  }
+  
